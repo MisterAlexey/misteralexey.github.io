@@ -30,7 +30,7 @@
 	}
 }, 
 {
-	access_token: 'cd9a0e381fcef675ec9786a1d1a2224e1f73da3c1525a2e73a30a9ce83572a2ac0d1c9523f0da04615e5c',
+	access_token: '<access_token>',
 	v: 5.37,
 	fields: 'domain'
 })
