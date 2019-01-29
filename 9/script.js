@@ -31,7 +31,7 @@ function game(user){
 			document.getElementById("wins").innerHTML = winner
         }
         if (user == 0 && chislo == 2) {
-        	alert ("Ты проиграл! Твоя бумага победила камень!")
+        	alert ("Ты проиграл! Твой камень обернут в бумагу!")
         	looser +=1;
 			document.getElementById("looses").innerHTML = looser
         }
