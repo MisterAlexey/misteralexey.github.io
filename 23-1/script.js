@@ -1,6 +1,5 @@
 var json = require('file.json')
 var data = JSON.parse(json)
-
 function create_table(){
     for (var i = 0; i < data.length; i++) {
         var tr = $("<tr></tr>")
