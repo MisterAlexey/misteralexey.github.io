@@ -8,6 +8,7 @@
 			var li = $('<li class="list-group-item"></li>').text(data.response.items[i].first_name + " " + data.response.items[i].last_name)
         	$('ul').append(li)
     	}
+		
     	var index = [];
 		$('input').on('keyup', () => {
 		    for (var i = 0; i < data.response.items.length; i++) {
