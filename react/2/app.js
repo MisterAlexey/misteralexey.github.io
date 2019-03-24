@@ -6,23 +6,23 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      users: JSON.json
+      users: null
     }
     this.delete_card = this.delete_card.bind(this)
   }
 
-//   componentDidMount(){
-//     fetch(json.json)
-//     .then(response => response.json())
-//     .then(data => {
-//       this.setState({
-//         users: data
-//       })
-//     })
-//     .catch(err => {
-//       console.log(err)
-//     })
-//   }
+  componentDidMount(){
+    fetch(json.json)
+    .then(response => response.json())
+    .then(data => {
+      this.setState({
+        users: data
+      })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
 
   delete_card(e){
     console.log(e.currentTarget.id)
