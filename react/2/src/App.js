@@ -27,21 +27,31 @@ class App extends Component {
 
   delete_card(e){
     console.log(e.currentTarget.id)
+    console.log(this.state.users.length)
+    var length = this.state.users.length
     var array = this.state.users;
-    array.splice(e.currentTarget.id, 1);
-    this.setState({
+    // for (var i = 1; i < length; i++) {
+    //   array.splice(e.currentTarget.id+1, 1);
+    //   this.setState({
+    //   users: array
+    //   })
+      
+    // }
+      array.splice(e.currentTarget.id++, length--);
+      this.setState({
       users: array
-    })
+      })
   }
 
   render() {
     return (
       <div className="App">
+        
         {
           this.state.users && this.state.users.map((user, i) => 
             <Card 
-              first_name={users.first_name}  
-              last_name={users.last_name}
+              first_name={user.first_name}  
+              last_name={user.last_name}
               delete_card={this.delete_card}
               id={i}
             />
