@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+// import Card from './Card'
 import Card from './Card'
 import json from './json.json'
 
@@ -7,40 +8,29 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      users: json
+      users: json,
+      random_user: null
     }
     this.delete_card = this.delete_card.bind(this)
+    this.cancel =  this.cancel.bind(this)
   }
-
-//   componentDidMount(){
-//     fetch(json.json)
-//     .then(response => response.json())
-//     .then(data => {
-//       this.setState({
-//         users: data
-//       })
-//     })
-//     .catch(err => {
-//       console.log(err)
-//     })
-//   }
 
   delete_card(e){
     console.log(e.currentTarget.id)
     console.log(this.state.users.length)
     var length = this.state.users.length
     var array = this.state.users;
-    // for (var i = 1; i < length; i++) {
-    //   array.splice(e.currentTarget.id+1, 1);
-    //   this.setState({
-    //   users: array
-    //   })
-      
-    // }
-      array.splice(e.currentTarget.id++, length--);
-      this.setState({
-      users: array
-      })
+    var rand = Math.floor(Math.random() * ((this.state.users.length-1) - 0))
+    this.setState({
+      random_user:
+      <div>
+        <p>{this.state.users[rand].last_name+" "+this.state.users[rand].first_name}</p>
+      </div>
+    })
+     
+  }
+  cancel(){
+    this.setState({random_user: null})
   }
 
   render() {
@@ -48,6 +38,7 @@ class App extends Component {
       <div className="App">
         
         {
+          !this.state.random_user ?
           this.state.users && this.state.users.map((user, i) => 
             <Card 
               first_name={user.first_name}  
@@ -56,6 +47,11 @@ class App extends Component {
               id={i}
             />
           )
+          :
+          <div>
+            {this.state.random_user}
+            <button onClick={this.cancel}>Cancel</button>
+          </div>
         }
       </div>
     );
