@@ -13,13 +13,11 @@ class App extends Component {
     }
     this.delete_card = this.delete_card.bind(this)
     this.cancel =  this.cancel.bind(this)
+    this.finding =  this.finding.bind(this)
   }
 
   delete_card(e){
-    console.log(e.currentTarget.id)
-    console.log(this.state.users.length)
-    var length = this.state.users.length
-    var array = this.state.users;
+
     var rand = Math.floor(Math.random() * ((this.state.users.length-1) - 0))
     this.setState({
       random_user:
@@ -32,11 +30,32 @@ class App extends Component {
   cancel(){
     this.setState({random_user: null})
   }
+  finding(){
+    var length = this.state.users.length
+    for(var i = 0; i < this.state.users.length; i++) {
+      for (var i = 0; i < this.state.users.length; i++) {
+        $('ul > li').eq(i).show()
+      }
+    var index = [];
+    for (var i = 0; i < this.state.users.length; i++) {
+      var name = this.state.users[i].toLowerCase(),
+          value = $('input').val()
+      if(this.state.users.indexOf(value.toLowerCase()) == -1){
+        index.push(i)
+      }
+      if(i == this.state.users.length-1){
+        for (var j = 0; j < index.length; j++) {
+          $('ul > li').eq([index[j]]).hide()
+        }
+      }
+    }
+    }
+  }
 
   render() {
     return (
       <div className="App">
-        
+        <input type="text" placeholder='Type the name' onKeyUp={this.finding} />
         {
           !this.state.random_user ?
           this.state.users && this.state.users.map((user, i) => 
@@ -46,7 +65,7 @@ class App extends Component {
               delete_card={this.delete_card}
               id={i}
             />
-          )
+          ) 
           :
           <div>
             {this.state.random_user}
