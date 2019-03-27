@@ -30,32 +30,25 @@ class App extends Component {
   cancel(){
     this.setState({random_user: null})
   }
-  finding(){
-    var length = this.state.users.length
-    for(var i = 0; i < this.state.users.length; i++) {
-      for (var i = 0; i < this.state.users.length; i++) {
-        $('ul > li').eq(i).show()
-      }
-    var index = [];
-    for (var i = 0; i < this.state.users.length; i++) {
-      var name = this.state.users[i].toLowerCase(),
-          value = $('input').val()
-      if(this.state.users.indexOf(value.toLowerCase()) == -1){
-        index.push(i)
-      }
-      if(i == this.state.users.length-1){
-        for (var j = 0; j < index.length; j++) {
-          $('ul > li').eq([index[j]]).hide()
-        }
+  finding(e){
+    var value = e.currentTarget.value, users = json, new_users = [];
+    for(var i =0; i<users.length; i++) {
+      var first_name = users[i].first_name, last_name = users[i].last_name;
+      first_name = first_name.toLowerCase();
+      last_name = last_name.toLowerCase();
+      if(first_name.indexOf(value) !== -1 || last_name.indexOf(value) !== -1){
+        new_users.push(users[i])
       }
     }
-    }
+    this.setState({
+      users: new_users
+    })
   }
 
   render() {
     return (
       <div className="App">
-        <input type="text" placeholder='Type the name' onKeyUp={this.finding} />
+        <input type="text" placeholder='Type the name' onChange={this.finding} />
         {
           !this.state.random_user ?
           this.state.users && this.state.users.map((user, i) => 
