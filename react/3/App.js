@@ -2,37 +2,43 @@ import React, { Component } from 'react';
 import './App.css';
 import Login from './login' 
 import Regist from './registr' 
+import Profile from './profile'
 
 class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      activeView: 'login'
+      activeView: 'login',
+      activePanel: localStorage.getItem('user') ? <Profile /> : <Login go={this.go.bind(this)} />
     }
-    this.changeView = this.changeView.bind(this)
+    this.go = this.go.bind(this)
   }
 
-  // componentDidMount(){
-  //   fetch('https://192.168.1.17:1337/login?login=qwe&password=123')
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     console.log(data)
-  //   })
+  go(component){
+    switch(component){
+      case 'reg':
+      this.setState({activePanel: <Regist go={this.go} />})
+      break;
+      case 'login':
+      this.setState({activePanel: <Login go={this.go} />})
+      break;
+      case 'profile':
+      this.setState({activePanel: <Profile go={this.go} />})
+      break;
+      default:
+      break;
+    }
+  }
+
+  // changeView(e){
+  //   this.setState({activeView: e.currentTarget.id})
   // }
-
-  changeView(e){
-    this.setState({activeView: e.currentTarget.id})
-  }
 
   render() {
     return (
       <div>
         {
-          this.state.activeView === 'login'
-          ?
-          <Login go={this.changeView} />
-          :
-          <Regist go={this.changeView} />
+          this.state.activePanel
         }
       </div>
     );

@@ -54,7 +54,7 @@ class Regist extends React.Component{
             <input name="password_2" placeholder="Reply password" type="password" onChange={this.onChange}/> 
             <br />  
             <button name='Registration' onClick={this.checking}>Create account</button>
-            <a id="login" onClick={this.props.go} href='#'>Логин</a>
+            <a onClick={() =>{this.props.go('login')}} href='#'>Логин</a>
             </div>
         )
     }

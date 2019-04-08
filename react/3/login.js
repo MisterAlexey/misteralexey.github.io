@@ -29,6 +29,8 @@ class Login extends React.Component{
                                 alert("invalid login")
                               }else{
                                   alert('welcome')
+                                  localStorage.setItem('user', JSON.stringify(data.user))
+                                  this.props.go('profile')
                               }
 
                           }
@@ -44,7 +46,7 @@ class Login extends React.Component{
             <input name="password" onChange={this.onChange} placeholder="Enter password" type="password"/> 
             <br />   
             <button onClick={this.go_enter}>Enter</button>
-            <a id="reg" onClick={this.props.go} href='#'>Регистрация</a>
+            <a  onClick={() =>{this.props.go('reg')}} href='#'>Регистрация</a>
             </div>
         )
     }
