@@ -42,7 +42,7 @@ class Regist extends React.Component{
     }
     render(){
         return(
-            <div className="login_data">
+            <div className="login_data container bg-info text-white border rounded mt-4">
             <h1>Or enter your data to create a new account</h1>
             <br />
             <input name="login" placeholder="Enter login" type="text" onChange={this.onChange}/>
@@ -53,7 +53,7 @@ class Regist extends React.Component{
             <br /> 
             <input name="password_2" placeholder="Reply password" type="password" onChange={this.onChange}/> 
             <br />  
-            <button name='Registration' onClick={this.checking}>Create account</button>
+            <button name='Registration' onClick={this.checking} className='btn btn-primary'>Create account</button>
             <a onClick={() =>{this.props.go('login')}} href='#'>Логин</a>
             </div>
         )

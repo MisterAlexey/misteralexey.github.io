@@ -37,15 +37,16 @@ class Login extends React.Component{
     }
     render(){
         return(
-            <div className="login_data">
+            <div className="login_data container bg-info text-white border rounded mt-4">
             <h1>Enter login and password</h1>
             <br />
             <input name="login" onChange={this.onChange} placeholder="Enter login" type="text"/>
             <br />
             <input name="password" onChange={this.onChange} placeholder="Enter password" type="password"/> 
             <br />   
-            <button onClick={this.go_enter}>Enter</button>
-            <a  onClick={() =>{this.props.go('reg')}} href='#'>Регистрация</a>
+            <button onClick={this.go_enter} className='btn btn-primary mt-3'>Sing in</button>
+            <br />
+            <button  onClick={() =>{this.props.go('reg')}} href='#' className='btn btn-primary mt-3'>Registration</button>
             </div>
         )
     }

@@ -3,6 +3,7 @@ import './App.css';
 import Login from './login' 
 import Regist from './registr' 
 import Profile from './profile'
+import 'bootstrap/dist/css/bootstrap.css';
 
 class App extends Component {
   constructor(props){
