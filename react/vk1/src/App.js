@@ -4,7 +4,7 @@ import '@vkontakte/vkui/dist/vkui.css';
 import { Panel, ListItem, Button, Epic, Tabbar, TabbarItem, Div, PanelHeader,  List,  View} from '@vkontakte/vkui';
 import Home from './panels/Home';
 import Korzina from './panels/korzina';
-
+import json from './json.json'
 import Icon28More from '@vkontakte/icons/dist/28/more'
 import Icon28Newsfeed from '@vkontakte/icons/dist/28/newsfeed'
 
@@ -14,7 +14,8 @@ class App extends React.Component {
 
 		this.state = {
 			activeStory: 'home',
-			korzina_label: []
+			korzina_label: [],
+			burger: json
 		};
 		this.onStoryChange = this.onStoryChange.bind(this);
 		this.addItem = this.addItem.bind(this);
@@ -38,13 +39,10 @@ class App extends React.Component {
 		this.setState({ activeStory: e.currentTarget.dataset.story })
 	  }
 	
-	addItem (item){
-		var i = item;
-		var	arr = this.state.orders
-		arr.push(i)
+	addItem (){
+		
 		this.setState ({
-			orders: arr,
-			korzina_label: arr.length
+			
 		})
 	}
 	

@@ -21,7 +21,7 @@ class Korzina extends React.Component {
       return (
         <Div>
           У вас в корзине:
-          
+          {this.props.json[0].code}
         </Div>
           
 

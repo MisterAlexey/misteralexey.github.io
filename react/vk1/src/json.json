@@ -1,0 +1,18 @@
+[
+    {
+        "burger_type": "longer",
+        "code": "
+        <Group>
+        <List>
+               <Cell before ={<img  src="https://nv.prines.ru/preview.php?src=/upload/images/9-1430286274.png&w=251&h=167&q=80" />}>
+               Длиннобургер
+               <br />
+                <Button onClick={() => this.addItem()}>Добавить один в корзину</Button>
+                </Cell>
+                <Cell>
+						Количество  - {this.props.burger_value}	
+				</Cell>
+            </List>
+         </Group>"
+    }
+]

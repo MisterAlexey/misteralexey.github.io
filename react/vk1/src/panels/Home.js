@@ -18,7 +18,6 @@ class Home extends React.Component{
 						Бургер Томск
 						</Cell>
 					</List>
-
 				</Group>
 				<Group>
 					<List>
