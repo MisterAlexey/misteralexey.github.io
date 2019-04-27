@@ -15,10 +15,12 @@ class App extends React.Component {
 		this.state = {
 			activeStory: 'home',
 			korzina_label: [],
-			burger: json
+			burger: json,
+			burger_value: 0
 		};
 		this.onStoryChange = this.onStoryChange.bind(this);
 		this.addItem = this.addItem.bind(this);
+		this.deleteItem = this.deleteItem.bind(this);
 	}
 
 	componentDidMount() {
@@ -39,10 +41,20 @@ class App extends React.Component {
 		this.setState({ activeStory: e.currentTarget.dataset.story })
 	  }
 	
-	addItem (){
-		
+	addItem(e){
+		let i = e.currentTarget.id
+		var tmp = this.state.burger; tmp[i].count++;
 		this.setState ({
-			
+			burger: tmp,
+			burger_value: this.state.burger_value + 1
+		})
+	}
+	deleteItem (e){
+		let i = e.currentTarget.id
+		var tmp = this.state.burger; tmp[i].count--;
+		this.setState ({
+			burger: tmp,
+			burger_value: this.state.burger_value -1
 		})
 	}
 	
@@ -61,20 +73,20 @@ class App extends React.Component {
 					selected={this.state.activeStory === 'korzina'}
 					data-story="korzina"
 					text="Корзина"
-					label="12"
+					label={this.state.burger_value !== 0 ? this.state.burger_value : null}
 				  ><Icon28More /></TabbarItem>
 				</Tabbar>
 			  }>
 				<View id="home" activePanel="home">
 				  <Panel id="home">
 					<PanelHeader>Ресторан</PanelHeader>
-					<Home id="home" fetchedUser={this.state.fetchedUser} go={this.go} />
+					<Home id="home" fetchedUser={this.state.fetchedUser} go={this.go} addItem={this.addItem} burgers={this.state.burger} />
 				  </Panel>
 				</View>
 				<View id="korzina" activePanel="korzina">
 				  <Panel id="korzina">
 					<PanelHeader>Корзина</PanelHeader>
-					<Korzina id="korzina" fetchedUser={this.state.fetchedUser} go={this.go} />
+					<Korzina id="korzina" burger_value={this.state.burger_value} deleteItem={this.deleteItem} fetchedUser={this.state.fetchedUser} go={this.go} />
 				  </Panel>
 				</View>
 			  </Epic>
