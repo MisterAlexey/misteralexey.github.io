@@ -5,6 +5,12 @@ var ObjectID = require('mongodb').ObjectID
 var bodyParser = require('body-parser')
 const url = "mongodb://test:q2w3e4r5@ds151626.mlab.com:51626/heroku_bhddf929"
 
+app.use(function(reg, res, next){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origins, X-Requesterd-With, Counter-Type, Accept");
+    next();
+})
+
 app.use(bodyParser.json());
 
 app.post('/reg', (reg, res)=>{
@@ -76,6 +82,18 @@ app.post('/get_girl', (req, res)=>{
     }else{
         res.json({type: "invalid_id"})
     }
+})
+
+app.get('/users', (req, res) => {
+    MongoClient.connect(url, (err, db) => {
+        if(err) throw err;
+        var dbo = db.db("heroku_bhddf929")
+        dbo.collection("users").find({}, { projection: { password: 0 } }).toArray((err, result) => {
+            if(err) throw err;
+            res.json(result)
+            db.close()
+        })
+    })
 })
 
 app.post('/edit', (req, res)=>{
